@@ -54,6 +54,17 @@ body {
 
 }
 
+#sidebar #clear-button{
+    background-color: rgb(67, 67, 65);
+    color: white;
+    border-style: none;
+    border-radius: 5px;
+    margin: auto;
+    margin-bottom: 170px;
+    width: 20vw;
+   
+}
+
 /*task section*/
 
 #tasks-container {
