@@ -15,9 +15,16 @@
             <form id="form">
                 <label>Tasks
                     <textarea id="task-input"></textarea>
+                    <select name="tag" id="tagSelect">
+                        <option value="work">Work</option>
+                        <option value="school">School</option>
+                        <option value="health">Health</option>
+                        <option value="Money">Money</option>
+                    </select>
                 </label>
                 <input type="submit">
             </form>
+            <input id="filter" placeholder="tags" type="text">
             <button id="clear-button">Clear tasks</button>
         </section>
         <section id="tasks-container">

@@ -8,6 +8,8 @@ const tasksDisplay = document.getElementById('tasks-display');
 const deleteCon = document.getElementById('delete-container');
 const datePosted = document.getElementById('date-posted');
 const check = document.getElementById('check');
+const filter = document.getElementById('filter');
+const tagSelect = document.getElementById('tagSelect');
 
 
 const today = new Date();
@@ -23,6 +25,16 @@ function makeRandId() {
     return randNum;
 }
 
+  deleteCon.addEventListener('drop', (e) => {
+        e.preventDefault
+        const draggedId = e.dataTransfer.getData('text/plain');
+        let removeId = document.getElementById(draggedId);
+        removeId.remove(); 
+        localStorage.setItem('taskLocal', JSON.stringify(tasklist));
+        
+    });
+
+
 tasklist = [];
 
 //creating task obejcts 
@@ -33,6 +45,7 @@ form.addEventListener('submit', (e) => {
         id: makeRandId(),
         date: timePosted,
         name: taskInput.value,
+        tag: tagSelect.value
     };
 
     tasklist.push(taskObject);
@@ -40,14 +53,6 @@ form.addEventListener('submit', (e) => {
 
     renderTask(taskObject);
 });
-
-deleteCon.addEventListener('drop', (e) => {
-    e.preventDefault();
-    const draggedId = e.dataTransfer.getData('text/plain');
-    let removeId = document.getElementById(draggedId);
-    removeId.remove();
-});
-
 
 
 function renderTask(task) {
@@ -59,6 +64,7 @@ function renderTask(task) {
     newTask.innerHTML =
         `
     <p id="date-posted">${task.date}</p>
+    <p class="task-tag">Tag: ${task.tag}</p>
     <p class="task-name">${task.name}</p>
     <input class="check" type="checkbox">
     <button class="edit-button">Edit task</button>
@@ -95,11 +101,15 @@ tasksDisplay.addEventListener('click', (e) => {
 function clearTasks() {
     const clearButton = document.getElementById('clear-button');
     clearButton.addEventListener("click", () => {
-    tasksDisplay.innerHTML = "";
-    localStorage.clear();
-    
-
+        tasksDisplay.innerHTML = "";
+        localStorage.clear();
     })
 };
 
 clearTasks();
+
+
+
+
+
+
